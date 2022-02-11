@@ -1,4 +1,7 @@
-module.exports = {
+const modulesToTranspile = ["react-native", "@react-native-aria/utils"];
+const withTM = require("next-transpile-modules")(modulesToTranspile);
+
+const moduleExports = withTM({
   webpack: (config) => {
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
@@ -14,4 +17,6 @@ module.exports = {
     ]
     return config
   },
-}
+});
+
+module.exports = moduleExports;
